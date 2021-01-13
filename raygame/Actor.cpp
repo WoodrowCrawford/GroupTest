@@ -20,6 +20,8 @@ Actor::Actor(float x, float y, float collisionRadius, char icon = ' ', float max
     m_maxSpeed = maxSpeed;
 }
 
+//Test comment
+
 Actor::Actor(float x, float y, float collisionRadius, Sprite* sprite, float maxSpeed = 1) : Actor(x, y, collisionRadius, ' ', maxSpeed)
 {
     m_sprite = sprite;
