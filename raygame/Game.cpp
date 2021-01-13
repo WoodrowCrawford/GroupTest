@@ -27,17 +27,15 @@ void Game::start()
 	m_camera->target = { (float)screenWidth / 2, (float)screenHeight / 2 };
 	m_camera->zoom = 1;
 
+
+
+
 	SetTargetFPS(60);
 	
 
-	//The main menu and how to play
-	const int screenWidth = 800;
-	const int screenHeight = 450;
 
-	InitWindow(screenWidth, screenHeight, "raylib [text] - main menu in rectangle");
 
-	const char text[] = "Welcome to this game. Your goal here is to defeat the enemies in the given area. Use WASD \
-		to move and try to avoid getting hit"
+	
 	
 }
 
@@ -47,6 +45,8 @@ void Game::update(float deltaTime)
 	{
 		m_scenes[i]->update(deltaTime);
 	}
+
+
 }
 
 void Game::draw()
@@ -54,12 +54,32 @@ void Game::draw()
 	BeginDrawing();
 
 	BeginMode2D(*m_camera);
-	ClearBackground(RAYWHITE);
+	ClearBackground(LIGHTGRAY);
+
+	//This is the main screen 
+	DrawText("Welcome to this game!", 200, 35, 50, BLACK);
+	DrawText("In this game your goal is to defeat all the enemies in the room.", 120, 100, 25, BLACK);
+	DrawText("Use the WASD keys to move and don't get hit or it's game over!", 120, 200, 25, BLUE);
+	DrawText("PRESS ANY KEY TO START", 350, 600, 20, RED);
+
+
+	if (IsKeyDown(KEY_SPACE))
+	{
+		ClearBackground(WHITE);
+
+		DrawRectangle(1, 2, 1200, 800, BLACK);
+		DrawText("HI", 55, 55, 40, BLUE);
+		
+	}
+
 
 	for (int i = 0; i < m_sceneCount; i++)
 	{
 		m_scenes[i]->draw();
 	}
+
+	
+	
 
 	EndMode2D();
 	EndDrawing();
