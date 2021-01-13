@@ -21,12 +21,24 @@ void Game::start()
 	int screenWidth = 1024;
 	int screenHeight = 760;
 
+
 	InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
 	m_camera->offset = { (float)screenWidth / 2, (float)screenHeight / 2 };
 	m_camera->target = { (float)screenWidth / 2, (float)screenHeight / 2 };
 	m_camera->zoom = 1;
 
 	SetTargetFPS(60);
+	
+
+	//The main menu and how to play
+	const int screenWidth = 800;
+	const int screenHeight = 450;
+
+	InitWindow(screenWidth, screenHeight, "raylib [text] - main menu in rectangle");
+
+	const char text[] = "Welcome to this game. Your goal here is to defeat the enemies in the given area. Use WASD \
+		to move and try to avoid getting hit"
+	
 }
 
 void Game::update(float deltaTime)
