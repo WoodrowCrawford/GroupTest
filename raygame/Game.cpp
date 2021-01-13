@@ -21,12 +21,22 @@ void Game::start()
 	int screenWidth = 1024;
 	int screenHeight = 760;
 
+
 	InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
 	m_camera->offset = { (float)screenWidth / 2, (float)screenHeight / 2 };
 	m_camera->target = { (float)screenWidth / 2, (float)screenHeight / 2 };
 	m_camera->zoom = 1;
 
+
+
+
 	SetTargetFPS(60);
+	
+
+
+
+	
+	
 }
 
 void Game::update(float deltaTime)
@@ -35,6 +45,8 @@ void Game::update(float deltaTime)
 	{
 		m_scenes[i]->update(deltaTime);
 	}
+
+
 }
 
 void Game::draw()
@@ -42,12 +54,20 @@ void Game::draw()
 	BeginDrawing();
 
 	BeginMode2D(*m_camera);
-	ClearBackground(RAYWHITE);
+	ClearBackground(BLACK);
+
+	//Draws how to play on the screen
+	DrawText("Welcome! Defeat the enemies by using WASD keys to move!", 1, 10, 15, RED);
+	
+
 
 	for (int i = 0; i < m_sceneCount; i++)
 	{
 		m_scenes[i]->draw();
 	}
+
+	
+	
 
 	EndMode2D();
 	EndDrawing();
