@@ -54,23 +54,11 @@ void Game::draw()
 	BeginDrawing();
 
 	BeginMode2D(*m_camera);
-	ClearBackground(LIGHTGRAY);
+	ClearBackground(BLACK);
 
-	//This is the main screen 
-	DrawText("Welcome to this game!", 200, 35, 50, BLACK);
-	DrawText("In this game your goal is to defeat all the enemies in the room.", 120, 100, 25, BLACK);
-	DrawText("Use the WASD keys to move and don't get hit or it's game over!", 120, 200, 25, BLUE);
-	DrawText("PRESS ANY KEY TO START", 350, 600, 20, RED);
-
-
-	if (IsKeyDown(KEY_SPACE))
-	{
-		ClearBackground(WHITE);
-
-		DrawRectangle(1, 2, 1200, 800, BLACK);
-		DrawText("HI", 55, 55, 40, BLUE);
-		
-	}
+	//Draws how to play on the screen
+	DrawText("Welcome! Defeat the enemies by using WASD keys to move!", 1, 10, 15, RED);
+	
 
 
 	for (int i = 0; i < m_sceneCount; i++)
