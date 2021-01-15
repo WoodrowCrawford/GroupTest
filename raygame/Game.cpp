@@ -33,7 +33,7 @@ void Game::start()
 	SetTargetFPS(60);
 	
 
-
+    
 
 	
 	
@@ -46,7 +46,7 @@ void Game::update(float deltaTime)
 		m_scenes[i]->update(deltaTime);
 	}
 
-
+	
 }
 
 void Game::draw()
