@@ -1,5 +1,6 @@
 #pragma once
 #include "Scene.h"
+#include "Wall.h"
 class Camera2D;
 
 static class Game
@@ -91,4 +92,8 @@ private:
 	static Scene** m_scenes;
     static int m_sceneCount;
     static int m_currentSceneIndex;
+
+    //Makes the walls pointers
+    Wall* m_wall;
+    
 };

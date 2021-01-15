@@ -32,9 +32,7 @@ void Game::start()
 
 	SetTargetFPS(60);
 	
-
-    
-
+	
 	
 	
 }
