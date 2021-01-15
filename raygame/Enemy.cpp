@@ -3,7 +3,7 @@
 Enemy::Enemy()
 {
 	m_health = 100;
-	m_damage = 20;
+	m_damage = 1;
 }
 
 Enemy::Enemy(float health, float damage)
