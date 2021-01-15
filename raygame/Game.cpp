@@ -67,7 +67,6 @@ void Game::draw()
 	}
 
 	
-	
 
 	EndMode2D();
 	EndDrawing();
