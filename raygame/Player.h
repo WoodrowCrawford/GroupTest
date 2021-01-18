@@ -1,9 +1,11 @@
 #pragma once
-class Player
+#include "Actor.h"
+class Player : Actor
 {
 public:
 	Player();
 	Player(float health);
+	Player(float health, float x, float y, float collisionRadius, float maxSpeed);
 
 	float takeDamage(float damageAmount);
 

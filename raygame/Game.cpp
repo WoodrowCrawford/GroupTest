@@ -1,5 +1,7 @@
 #include "Game.h"
 #include "raylib.h"
+#include "Player.h"
+
 
 bool Game::m_gameOver = false;
 Scene** Game::m_scenes = new Scene*;
@@ -27,14 +29,11 @@ void Game::start()
 	m_camera->target = { (float)screenWidth / 2, (float)screenHeight / 2 };
 	m_camera->zoom = 1;
 
-
-
-
 	SetTargetFPS(60);
 	
-
-
-
+    //Creates the new player to the scene
+	new Player(100, 6, 8, 2, 4);
+	
 	
 	
 }
