@@ -21,6 +21,7 @@ Player::Player(float health, float x, float y, float collisionRadius, float maxS
 	collisionRadius = 2;
 	m_maxSpeed = 3;
 	
+
 }
 
 float Player::takeDamage(float damageAmount)
