@@ -32,7 +32,7 @@ void Game::start()
 	SetTargetFPS(60);
 	
     //Creates the new player to the scene
-	new Player(100, 6, 8, 2, 4);
+
 	
 	
 	

@@ -1,11 +1,11 @@
 #pragma once
 #include "Actor.h"
-class Player : Actor
+#include "Sprite.h"
+class Player :public Actor
 {
 public:
 	Player();
-	Player(float health);
-	Player(float health, float x, float y, float collisionRadius, float maxSpeed);
+	Player(float health, float x, float y, float collisionRadius, Sprite* sprite, float maxSpeed);
 
 	float takeDamage(float damageAmount);
 
@@ -13,4 +13,5 @@ public:
 
 private:
 	float m_health;
+	Sprite m_sprite;
 };
