@@ -32,10 +32,17 @@ void Game::start()
 	SetTargetFPS(60);
 
 	Player* player = new Player(10, 20, 20, 2, 2);
+
+	//This is just a test creation to see how the actor class is supposed to work
+	Actor* actor = new Actor(0, 0, 1, "Images/Player.png", 2);
+
 	Scene* scene = new Scene();
 	scene->start();
 	addScene(scene);
+
 	scene->addActor(player);
+	scene->addActor(actor);
+	
 	
 
 		

@@ -14,7 +14,13 @@ public:
 	void setLocalPosition(MathLibrary::Vector2 value);
 
 
+
 	virtual void onCollision(Actor* other);
+	virtual void update(float deltaTime);
+	virtual void draw();
+	virtual void debug();
+
+	
 private:
 	float m_health;
 	Sprite m_sprite;

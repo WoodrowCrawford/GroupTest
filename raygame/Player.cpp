@@ -50,3 +50,23 @@ void Player::onCollision(Actor* other)
 	
 }
 
+void Player::update(float deltaTime)
+{
+}
+
+
+
+void Player::draw()
+{
+	BeginDrawing();
+	
+	DrawRectangle(5, 30, 1, 800, ORANGE);
+	
+	
+}
+
+void Player::debug()
+{
+}
+
+
