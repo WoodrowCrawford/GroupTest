@@ -31,7 +31,10 @@ void Game::start()
 
 	SetTargetFPS(60);
 	
-    //Creates the new player to the scene
+	Scene* scene = new Scene();
+	scene->start();
+	addScene(scene);
+	
 
 	
 	
