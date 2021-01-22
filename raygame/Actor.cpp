@@ -28,7 +28,7 @@ Actor::Actor(float x, float y, float collisionRadius, Sprite* sprite, float maxS
 
 Actor::Actor(float x, float y, float collisionRadius, const char* spriteFilePath, float maxSpeed = 1) : Actor(x, y, collisionRadius, ' ', maxSpeed)
 {
-    m_sprite = new Sprite(spriteFilePath);
+    m_sprite = new Sprite("Images/Player.png");
 }
 
 MathLibrary::Vector2 Actor::getForward()

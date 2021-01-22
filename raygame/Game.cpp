@@ -30,12 +30,15 @@ void Game::start()
 	m_camera->zoom = 1;
 
 	SetTargetFPS(60);
-	
+
+	Player* player = new Player(10, 20, 20, 2, 2);
 	Scene* scene = new Scene();
 	scene->start();
 	addScene(scene);
+	scene->addActor(player);
 	
 
+		
 	
 	
 	

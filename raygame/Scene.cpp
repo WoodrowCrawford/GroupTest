@@ -2,6 +2,7 @@
 #include "Player.h"
 
 
+
 Scene::Scene()
 {
     m_actorCount = 0;
@@ -109,8 +110,8 @@ bool Scene::removeActor(Actor* actor)
 void Scene::start()
 {
     m_started = true;
-    Player* player = new Player(10, 20, 20, 2, 2);
-    addActor(player);
+   
+
 }
 
 void Scene::checkCollision()

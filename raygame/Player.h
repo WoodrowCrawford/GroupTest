@@ -13,6 +13,7 @@ public:
 
 	void setLocalPosition(MathLibrary::Vector2 value);
 
+
 	virtual void onCollision(Actor* other);
 private:
 	float m_health;

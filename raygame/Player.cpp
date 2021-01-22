@@ -37,12 +37,16 @@ float Player::takeDamage(float damageAmount)
 
 
 
+
+
 void Player::setLocalPosition(MathLibrary::Vector2 value)
 {
-	
 }
+
+
 
 void Player::onCollision(Actor* other)
 {
+	
 }
 
