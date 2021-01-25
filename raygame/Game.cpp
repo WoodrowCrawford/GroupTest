@@ -34,7 +34,7 @@ void Game::start()
 	Player* player = new Player(10, 20, 20, 2, 2);
 
 	//This is just a test creation to see how the actor class is supposed to work
-	Actor* actor = new Actor(0, 0, 1, "Images/Player.png", 2);
+	Actor* actor = new Actor(22, 4, 1, "Images/Player.png", 2);
 
 	Scene* scene = new Scene();
 	scene->start();
@@ -42,6 +42,9 @@ void Game::start()
 
 	scene->addActor(player);
 	scene->addActor(actor);
+	actor->setScale(MathLibrary::Vector2(9, 4));
+	actor->rotate(3);
+	
 	
 	
 

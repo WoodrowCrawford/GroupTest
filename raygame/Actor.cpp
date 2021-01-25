@@ -2,6 +2,7 @@
 #include "Actor.h"
 #include "raylib.h"
 #include "Sprite.h"
+#include "Game.h"
 
 Actor::Actor(float x, float y, float collisionRadius, char icon = ' ', float maxSpeed = 1)
 {
@@ -12,11 +13,12 @@ Actor::Actor(float x, float y, float collisionRadius, char icon = ' ', float max
     m_scale = new MathLibrary::Matrix3();
 
     m_icon = icon;
-    setLocalPosition(MathLibrary::Vector2(x,y));
+    setLocalPosition(MathLibrary::Vector2(x, y));
     m_velocity = MathLibrary::Vector2();
     m_collisionRadius = collisionRadius;
     m_childCount = 0;
     m_maxSpeed = maxSpeed;
+    *m_globalTransform = MathLibrary::Matrix3(0, 1, 0, 0, 1, 1, 0, 0, 0);
 }
 
 //Test comment
@@ -235,6 +237,7 @@ bool Actor::checkCollision(Actor* other)
 
 void Actor::onCollision(Actor* other)
 {
+    
 }
 
 void Actor::update(float deltaTime)
@@ -250,6 +253,10 @@ void Actor::update(float deltaTime)
 
     //Increase position by the current velocity
     setLocalPosition(m_velocity * deltaTime);
+
+   
+    
+    
 }
 
 void Actor::draw()
