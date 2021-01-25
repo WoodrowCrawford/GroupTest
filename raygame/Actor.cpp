@@ -2,6 +2,8 @@
 #include "Actor.h"
 #include "raylib.h"
 #include "Sprite.h"
+#include "Game.h"
+
 
 Actor::Actor(float x, float y, float collisionRadius, char icon = ' ', float maxSpeed = 1)
 {
@@ -12,11 +14,12 @@ Actor::Actor(float x, float y, float collisionRadius, char icon = ' ', float max
     m_scale = new MathLibrary::Matrix3();
 
     m_icon = icon;
-    setLocalPosition(MathLibrary::Vector2(x,y));
-    m_velocity = MathLibrary::Vector2();
+    setLocalPosition(MathLibrary::Vector2(x, y));
+    m_velocity = MathLibrary::Vector2(x, y);
     m_collisionRadius = collisionRadius;
     m_childCount = 0;
     m_maxSpeed = maxSpeed;
+    
 }
 
 //Test comment
@@ -28,7 +31,7 @@ Actor::Actor(float x, float y, float collisionRadius, Sprite* sprite, float maxS
 
 Actor::Actor(float x, float y, float collisionRadius, const char* spriteFilePath, float maxSpeed = 1) : Actor(x, y, collisionRadius, ' ', maxSpeed)
 {
-    m_sprite = new Sprite(spriteFilePath);
+    m_sprite = new Sprite("Images/Player.png");
 }
 
 MathLibrary::Vector2 Actor::getForward()
@@ -87,11 +90,16 @@ MathLibrary::Vector2 Actor::getAcceleration()
 void Actor::setAcceleration(MathLibrary::Vector2 value)
 {
     m_acceleration = value;
+    
 }
 
 void Actor::start()
 {
     m_started = true;
+  
+    setScale(MathLibrary::Vector2(2, 2));
+    setWorldPostion(MathLibrary::Vector2(10, 10));
+
 }
 
 void Actor::addChild(Actor* child)
@@ -227,6 +235,59 @@ void Actor::lookAt(MathLibrary::Vector2 position)
     rotate(angle);
 }
 
+
+void Actor:: getMovement()
+{
+    if (IsKeyDown(KeyboardKey(KEY_W)))
+    {
+        
+        lookAt(MathLibrary::Vector2(10, 6));
+       
+        updateFacing();
+  
+       
+    }
+
+    if (IsKeyDown(KeyboardKey(KEY_D)))
+    {
+        lookAt(MathLibrary::Vector2(20, 10));
+       
+        updateFacing();
+       
+    }
+
+    if (IsKeyDown(KeyboardKey(KEY_S)))
+    {
+        lookAt(MathLibrary::Vector2(10, 20));
+       
+        updateFacing();
+      
+    }
+
+    if (IsKeyDown(KeyboardKey(KEY_A)))
+    {
+        lookAt(MathLibrary::Vector2(6, 10));
+        
+        updateFacing();
+  
+    }
+
+
+    //Used for acceleration
+    if (IsKeyDown(KeyboardKey(KEY_SPACE)))
+    {
+        
+        updateFacing();
+        setWorldPostion(MathLibrary::Vector2(20, 10));
+        
+        
+     
+    }
+    updateFacing();
+    
+    
+}
+
 bool Actor::checkCollision(Actor* other)
 {
     float distance = (other->getWorldPosition() - getWorldPosition()).getMagnitude();
@@ -235,13 +296,17 @@ bool Actor::checkCollision(Actor* other)
 
 void Actor::onCollision(Actor* other)
 {
+    
 }
 
 void Actor::update(float deltaTime)
 {
+    start();
+    getMovement();
     *m_localTransform = *m_translation * *m_rotation * *m_scale;
 
     updateGlobalTransform();
+    updateFacing();
 
     setVelocity(m_velocity + m_acceleration);
 
@@ -250,11 +315,14 @@ void Actor::update(float deltaTime)
 
     //Increase position by the current velocity
     setLocalPosition(m_velocity * deltaTime);
+
+   
+    
 }
 
 void Actor::draw()
 {
-    DrawCircle(getWorldPosition().x * 32, getWorldPosition().y * 32, 50, BLUE);
+   
     //Draws the actor and a line indicating it facing to the raylib window
     DrawLine(
         (int)(getWorldPosition().x * 32),

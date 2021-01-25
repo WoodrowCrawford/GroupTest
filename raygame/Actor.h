@@ -149,7 +149,9 @@ public:
     /// <param name="position">The position the actor should be facing</param>
     void lookAt(MathLibrary::Vector2 position);
 
-    /// <summary>
+	void getMovement();
+
+	/// <summary>
     /// Checks if the collision circle of the given actor is overlapping with this actor.
     /// </summary>
     /// <param name="other">The actor to check collision against.</param>
@@ -192,12 +194,13 @@ protected:
     MathLibrary::Vector2 m_acceleration;
     float m_maxSpeed;
     char m_icon;
+    Sprite* m_sprite;
 
 private:
     bool m_started;
     float m_collisionRadius;
     Actor* m_parent;
     int m_childCount;
-    Sprite* m_sprite;
+   
 };
 

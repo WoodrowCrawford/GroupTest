@@ -1,4 +1,7 @@
 #include "Scene.h"
+#include "Player.h"
+
+
 
 Scene::Scene()
 {
@@ -107,6 +110,8 @@ bool Scene::removeActor(Actor* actor)
 void Scene::start()
 {
     m_started = true;
+   
+
 }
 
 void Scene::checkCollision()

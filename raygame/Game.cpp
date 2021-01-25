@@ -30,9 +30,26 @@ void Game::start()
 	m_camera->zoom = 1;
 
 	SetTargetFPS(60);
+
+	Player* player = new Player(10, 20, 20, 2, 2);
+
+	//This is just a test creation to see how the actor class is supposed to work
+	Actor* actor = new Actor(22, 4, 1, "Images/Player.png", 2);
 	
-    //Creates the new player to the scene
-	new Player(100, 6, 8, 2, 4);
+
+	Scene* scene = new Scene();
+	scene->start();
+	addScene(scene);
+
+	scene->addActor(player);
+	scene->addActor(actor);
+	
+
+	
+	
+	
+
+		
 	
 	
 	
