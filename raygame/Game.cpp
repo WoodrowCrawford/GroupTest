@@ -35,6 +35,7 @@ void Game::start()
 
 	//This is just a test creation to see how the actor class is supposed to work
 	Actor* actor = new Actor(22, 4, 1, "Images/Player.png", 2);
+	
 
 	Scene* scene = new Scene();
 	scene->start();
@@ -42,6 +43,7 @@ void Game::start()
 
 	scene->addActor(player);
 	scene->addActor(actor);
+	
 
 	
 	

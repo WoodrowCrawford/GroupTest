@@ -15,11 +15,11 @@ Actor::Actor(float x, float y, float collisionRadius, char icon = ' ', float max
 
     m_icon = icon;
     setLocalPosition(MathLibrary::Vector2(x, y));
-    m_velocity = MathLibrary::Vector2();
+    m_velocity = MathLibrary::Vector2(x, y);
     m_collisionRadius = collisionRadius;
     m_childCount = 0;
     m_maxSpeed = maxSpeed;
-    *m_globalTransform = MathLibrary::Matrix3(0, 1, 0, 0, 1, 1, 0, 0, 0);
+    
 }
 
 //Test comment
@@ -90,11 +90,13 @@ MathLibrary::Vector2 Actor::getAcceleration()
 void Actor::setAcceleration(MathLibrary::Vector2 value)
 {
     m_acceleration = value;
+    
 }
 
 void Actor::start()
 {
     m_started = true;
+  
     setScale(MathLibrary::Vector2(2, 2));
     setWorldPostion(MathLibrary::Vector2(10, 10));
 
@@ -239,33 +241,51 @@ void Actor:: getMovement()
     if (IsKeyDown(KeyboardKey(KEY_W)))
     {
         
-        rotate(2);
+        lookAt(MathLibrary::Vector2(10, 6));
+       
+        updateFacing();
+  
        
     }
 
     if (IsKeyDown(KeyboardKey(KEY_D)))
     {
-        rotate(2);
+        lookAt(MathLibrary::Vector2(20, 10));
+       
+        updateFacing();
        
     }
 
     if (IsKeyDown(KeyboardKey(KEY_S)))
     {
-        rotate(2);
+        lookAt(MathLibrary::Vector2(10, 20));
+       
+        updateFacing();
       
     }
 
     if (IsKeyDown(KeyboardKey(KEY_A)))
     {
-        rotate(2);
+        lookAt(MathLibrary::Vector2(6, 10));
+        
+        updateFacing();
   
     }
 
+
+    //Used for acceleration
     if (IsKeyDown(KeyboardKey(KEY_SPACE)))
     {
-        setScale(MathLibrary::Vector2(4, 4));
+        
+        updateFacing();
+        setWorldPostion(MathLibrary::Vector2(20, 10));
+        
+        
      
     }
+    updateFacing();
+    
+    
 }
 
 bool Actor::checkCollision(Actor* other)
@@ -297,7 +317,6 @@ void Actor::update(float deltaTime)
     setLocalPosition(m_velocity * deltaTime);
 
    
-    
     
 }
 
