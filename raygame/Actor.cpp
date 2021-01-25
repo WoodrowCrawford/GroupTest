@@ -4,6 +4,7 @@
 #include "Sprite.h"
 #include "Game.h"
 
+
 Actor::Actor(float x, float y, float collisionRadius, char icon = ' ', float maxSpeed = 1)
 {
     m_globalTransform = new MathLibrary::Matrix3();
@@ -237,26 +238,33 @@ void Actor:: getMovement()
 {
     if (IsKeyDown(KeyboardKey(KEY_W)))
     {
-        rotate(4);
-        updateFacing();
+        
+        rotate(2);
+       
     }
 
     if (IsKeyDown(KeyboardKey(KEY_D)))
     {
         rotate(2);
-        updateFacing();
+       
     }
 
     if (IsKeyDown(KeyboardKey(KEY_S)))
     {
         rotate(2);
-        updateFacing();
+      
     }
 
     if (IsKeyDown(KeyboardKey(KEY_A)))
     {
         rotate(2);
-        updateFacing();
+  
+    }
+
+    if (IsKeyDown(KeyboardKey(KEY_SPACE)))
+    {
+        setScale(MathLibrary::Vector2(4, 4));
+     
     }
 }
 
@@ -278,6 +286,7 @@ void Actor::update(float deltaTime)
     *m_localTransform = *m_translation * *m_rotation * *m_scale;
 
     updateGlobalTransform();
+    updateFacing();
 
     setVelocity(m_velocity + m_acceleration);
 
@@ -294,7 +303,7 @@ void Actor::update(float deltaTime)
 
 void Actor::draw()
 {
-    DrawCircle(getWorldPosition().x * 32, getWorldPosition().y * 32, 50, BLUE);
+   
     //Draws the actor and a line indicating it facing to the raylib window
     DrawLine(
         (int)(getWorldPosition().x * 32),
