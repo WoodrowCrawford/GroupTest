@@ -42,8 +42,7 @@ void Game::start()
 
 	scene->addActor(player);
 	scene->addActor(actor);
-	actor->setScale(MathLibrary::Vector2(9, 4));
-	actor->rotate(3);
+
 	
 	
 	

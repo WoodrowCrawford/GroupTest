@@ -94,6 +94,9 @@ void Actor::setAcceleration(MathLibrary::Vector2 value)
 void Actor::start()
 {
     m_started = true;
+    setScale(MathLibrary::Vector2(2, 2));
+    setWorldPostion(MathLibrary::Vector2(10, 10));
+
 }
 
 void Actor::addChild(Actor* child)
@@ -229,6 +232,34 @@ void Actor::lookAt(MathLibrary::Vector2 position)
     rotate(angle);
 }
 
+
+void Actor:: getMovement()
+{
+    if (IsKeyDown(KeyboardKey(KEY_W)))
+    {
+        rotate(4);
+        updateFacing();
+    }
+
+    if (IsKeyDown(KeyboardKey(KEY_D)))
+    {
+        rotate(2);
+        updateFacing();
+    }
+
+    if (IsKeyDown(KeyboardKey(KEY_S)))
+    {
+        rotate(2);
+        updateFacing();
+    }
+
+    if (IsKeyDown(KeyboardKey(KEY_A)))
+    {
+        rotate(2);
+        updateFacing();
+    }
+}
+
 bool Actor::checkCollision(Actor* other)
 {
     float distance = (other->getWorldPosition() - getWorldPosition()).getMagnitude();
@@ -242,6 +273,8 @@ void Actor::onCollision(Actor* other)
 
 void Actor::update(float deltaTime)
 {
+    start();
+    getMovement();
     *m_localTransform = *m_translation * *m_rotation * *m_scale;
 
     updateGlobalTransform();
