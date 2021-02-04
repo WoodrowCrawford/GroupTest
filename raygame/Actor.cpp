@@ -278,6 +278,15 @@ void Actor:: getMovement(float deltaTime)
     }
 
 
+    //Used if the Player is off of the screen
+    if(IsKeyDown(KeyboardKey(KEY_Q)))
+    {
+
+        setLocalPosition({ 10, 10 });
+
+    }
+
+
     //Used for acceleration
     if (IsKeyDown(KeyboardKey(KEY_SPACE)))
     {
