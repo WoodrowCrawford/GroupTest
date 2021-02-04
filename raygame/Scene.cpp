@@ -110,7 +110,11 @@ bool Scene::removeActor(Actor* actor)
 void Scene::start()
 {
     m_started = true;
-   
+    for (int i = 0; i < m_actorCount; i++)
+    {
+        m_actors[i]->start();
+        
+    }
 
 }
 

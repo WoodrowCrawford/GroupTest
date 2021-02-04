@@ -14,11 +14,11 @@ Actor::Actor(float x, float y, float collisionRadius, char icon = ' ', float max
     m_scale = new MathLibrary::Matrix3();
 
     m_icon = icon;
-    setLocalPosition(MathLibrary::Vector2(x, y));
-    m_velocity = MathLibrary::Vector2(x, y);
+    setLocalPosition(MathLibrary::Vector2(10, 10));
+    m_velocity = MathLibrary::Vector2();
     m_collisionRadius = collisionRadius;
     m_childCount = 0;
-    m_maxSpeed = maxSpeed;
+    m_maxSpeed = 1;
     
 }
 
@@ -36,6 +36,8 @@ Actor::Actor(float x, float y, float collisionRadius, const char* spriteFilePath
 
 MathLibrary::Vector2 Actor::getForward()
 {
+    MathLibrary::Vector2 vec2 = { m_globalTransform->m11, m_globalTransform->m21 }; 
+    vec2 = vec2.getNormalized();
     return MathLibrary::Vector2(m_globalTransform->m11, m_globalTransform->m21).getNormalized();
 }
 
@@ -98,7 +100,7 @@ void Actor::start()
     m_started = true;
   
     setScale(MathLibrary::Vector2(2, 2));
-    setWorldPostion(MathLibrary::Vector2(10, 10));
+    //setWorldPostion(MathLibrary::Vector2(10, 10));
 
 }
 
@@ -236,39 +238,42 @@ void Actor::lookAt(MathLibrary::Vector2 position)
 }
 
 
-void Actor:: getMovement()
+void Actor:: getMovement(float deltaTime)
 {
     if (IsKeyDown(KeyboardKey(KEY_W)))
     {
         
         lookAt(MathLibrary::Vector2(10, 6));
        
-        updateFacing();
+        //updateFacing();
   
        
     }
 
     if (IsKeyDown(KeyboardKey(KEY_D)))
     {
-        lookAt(MathLibrary::Vector2(20, 10));
+        
        
-        updateFacing();
+        rotate(-3 * deltaTime);
        
     }
 
     if (IsKeyDown(KeyboardKey(KEY_S)))
     {
-        lookAt(MathLibrary::Vector2(10, 20));
        
-        updateFacing();
+        rotate(3 * deltaTime);
+     
       
     }
 
     if (IsKeyDown(KeyboardKey(KEY_A)))
     {
-        lookAt(MathLibrary::Vector2(6, 10));
         
-        updateFacing();
+        rotate(3 * deltaTime);
+    
+        
+        
+        
   
     }
 
@@ -277,11 +282,18 @@ void Actor:: getMovement()
     if (IsKeyDown(KeyboardKey(KEY_SPACE)))
     {
         
-        updateFacing();
-        setWorldPostion(MathLibrary::Vector2(20, 10));
         
+
+        
+        setAcceleration(getForward() * 1 * deltaTime);
         
      
+     
+    }
+    else
+    {
+        setAcceleration({ 0, 0 });
+        setVelocity({ 0,0 });
     }
     updateFacing();
     
@@ -301,11 +313,12 @@ void Actor::onCollision(Actor* other)
 
 void Actor::update(float deltaTime)
 {
-    start();
-    getMovement();
+  
+    getMovement(deltaTime);
     *m_localTransform = *m_translation * *m_rotation * *m_scale;
 
     updateGlobalTransform();
+   
     updateFacing();
 
     setVelocity(m_velocity + m_acceleration);
@@ -314,7 +327,7 @@ void Actor::update(float deltaTime)
         m_velocity = m_velocity.getNormalized() * m_maxSpeed;
 
     //Increase position by the current velocity
-    setLocalPosition(m_velocity * deltaTime);
+    setLocalPosition(m_velocity + getLocalPosition());
 
    
     

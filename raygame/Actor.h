@@ -149,7 +149,7 @@ public:
     /// <param name="position">The position the actor should be facing</param>
     void lookAt(MathLibrary::Vector2 position);
 
-	void getMovement();
+	void getMovement(float deltaTime);
 
 	/// <summary>
     /// Checks if the collision circle of the given actor is overlapping with this actor.
