@@ -20,6 +20,7 @@ Game::Game()
 
 void Game::start()
 {
+	//Sets the screen size
 	int screenWidth = 1024;
 	int screenHeight = 760;
 
@@ -31,9 +32,8 @@ void Game::start()
 
 	SetTargetFPS(60);
 
-	//Player* player = new Player(10, 20, 20, 2, 2);
 
-	//This is just a test creation to see how the actor class is supposed to work
+	//This creates the player 
 	Actor* actor = new Actor(22, 4, 1, "Images/Player.png", 2);
 	
 
@@ -41,19 +41,12 @@ void Game::start()
 	scene->start();
 	addScene(scene);
 
-	//scene->addActor(player);
+	//Adds the player to the scene
 	scene->addActor(actor);
-	
-
-	
-	
-	
-
-		
-	
 	
 	
 }
+
 
 void Game::update(float deltaTime)
 {
@@ -65,6 +58,8 @@ void Game::update(float deltaTime)
 
 }
 
+
+//Draws everything on the screen
 void Game::draw()
 {
 	BeginDrawing();

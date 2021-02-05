@@ -237,43 +237,36 @@ void Actor::lookAt(MathLibrary::Vector2 position)
     rotate(angle);
 }
 
-
+//Gets the movement from the player
 void Actor:: getMovement(float deltaTime)
 {
+    //Used to set the player looking up
     if (IsKeyDown(KeyboardKey(KEY_W)))
     {
         
         lookAt(MathLibrary::Vector2(10, 6));
        
-        //updateFacing();
-  
-       
     }
 
+    //Rotates the player
     if (IsKeyDown(KeyboardKey(KEY_D)))
     {
         
-       
         rotate(-3 * deltaTime);
        
     }
-
+    //Used to rotate the player
     if (IsKeyDown(KeyboardKey(KEY_S)))
     {
        
         rotate(3 * deltaTime);
      
-      
     }
 
     if (IsKeyDown(KeyboardKey(KEY_A)))
     {
         
         rotate(3 * deltaTime);
-    
-        
-        
-        
   
     }
 
@@ -290,15 +283,11 @@ void Actor:: getMovement(float deltaTime)
     //Used for acceleration
     if (IsKeyDown(KeyboardKey(KEY_SPACE)))
     {
-        
-        
-
-        
+      
         setAcceleration(getForward() * 1 * deltaTime);
-        
-     
      
     }
+    //When the spacebar is released
     else
     {
         setAcceleration({ 0, 0 });
@@ -309,15 +298,18 @@ void Actor:: getMovement(float deltaTime)
     
 }
 
+//Checks the collision between 2 actors
 bool Actor::checkCollision(Actor* other)
 {
     float distance = (other->getWorldPosition() - getWorldPosition()).getMagnitude();
     return distance <= m_collisionRadius + other->m_collisionRadius;
 }
 
+
+//What happens when an actor touches another actor
 void Actor::onCollision(Actor* other)
 {
-    
+  
 }
 
 void Actor::update(float deltaTime)
@@ -359,6 +351,8 @@ void Actor::draw()
     //Raylib.DrawCircleLines((int)(WorldPosition.X * 32), (int)(WorldPosition.Y * 32), _collisionRadius * 32, _rayColor);
 }
 
+
+//Used for debugging purposes
 void Actor::debug()
 {
 }
