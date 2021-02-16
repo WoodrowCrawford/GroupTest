@@ -243,58 +243,50 @@ void Actor:: getMovement(float deltaTime)
     //Used to set the player looking up
     if (IsKeyDown(KeyboardKey(KEY_W)))
     {
-        
-        lookAt(MathLibrary::Vector2(10, 6));
-       
+
+        setAcceleration(getForward() * 1 * deltaTime);
+
     }
 
     //Rotates the player
-    if (IsKeyDown(KeyboardKey(KEY_D)))
+    else if (IsKeyDown(KeyboardKey(KEY_D)))
     {
-        
+
         rotate(-3 * deltaTime);
-       
+
     }
-    //Used to rotate the player
-    if (IsKeyDown(KeyboardKey(KEY_S)))
+
+    else if (IsKeyDown(KeyboardKey(KEY_A)))
     {
-       
+
         rotate(3 * deltaTime);
-     
-    }
-
-    if (IsKeyDown(KeyboardKey(KEY_A)))
-    {
-        
-        rotate(3 * deltaTime);
-  
-    }
-
-
-    //Used if the Player is off of the screen
-    if(IsKeyDown(KeyboardKey(KEY_Q)))
-    {
-
-        setLocalPosition({ 10, 10 });
 
     }
 
-
-    //Used for acceleration
-    if (IsKeyDown(KeyboardKey(KEY_SPACE)))
-    {
-      
-        setAcceleration(getForward() * 1 * deltaTime);
-     
-    }
-    //When the spacebar is released
     else
     {
         setAcceleration({ 0, 0 });
-        setVelocity({ 0,0 });
+        //slow down ship
+
+        if (m_velocity.x > .1)
+        {
+            m_velocity.x -= 100 * deltaTime;
+        }
+        else if (m_velocity.x < -.1)
+        {
+            m_velocity.x += 100 * deltaTime;
+        }
+
+        if (m_velocity.y > .1)
+        {
+            m_velocity.y -= 100 * deltaTime;
+        }
+        else if (m_velocity.y < -.1)
+        {
+            m_velocity.y += 100 * deltaTime;
+        }
+
     }
-    updateFacing();
-    
     
 }
 
